@@ -18,7 +18,7 @@ I installed and set up apache following this [instructions](https://www.digitalo
 Write the following: 
 ``` 
 <VirtualHost *:80>
-    ProxyPass /laboral-api http://localhost:5000
+    ProxyPass /graphql http://localhost:5006/graphql
     ServerAdmin admin@$HOSTNAME
     ServerName $HOSTNAME
     ServerAlias www.$HOSTNAME
