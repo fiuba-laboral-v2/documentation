@@ -23,3 +23,8 @@ archivos Model.ts, Repository.ts, Interface.ts y Serializer.ts
 10) Los tipos de grahpql se nombran como: **GraphQL&lt;TypeName&gt;**
 
 11) El ancho mínimo de viewport que soportamos es de 210px inclusive
+
+12) Todas las Queries y Mutations de Graphql deben ser guardadas en constantes en mayusculas al momento de ser usadas.
+
+# Front End
+[Front End](front_end.md)
