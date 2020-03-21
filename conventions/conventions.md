@@ -30,9 +30,11 @@ archivos Model.ts, Repository.ts, Interface.ts y Serializer.ts
 
 Exclusivo **Front End**:
 
-1) Todas las paginas deben estar bajo la carpeta `src/pages`
+1) Todas las paginas deben estar bajo la carpeta `src/pages`.
 
-2) Todas las paginas deben estar a su vez dentro de las carpetas, Applicant, Company o Administration, salvo paginas compartidas como el 404.
+2) Todas las paginas deben estar a su vez dentro de las carpetas, Applicant, Company o Administration.
+
+3) Las paginas compartidas por las 3 aplicaciones, tales como un 404, deberan estar en `src/pages`.
 
 3) Las carpetas Applicant, Company o Administration van a tener su conjunto de subrutas para acceder a sus respectivas paginas.
 
