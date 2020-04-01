@@ -8,4 +8,4 @@ Trabajo Práctico Profesional, FIUBA, 2020
 [back-end](setup/backend.md)
 
 # Deploy
-[deploy](deploy.md)
+[deploy](Deploy.md)
