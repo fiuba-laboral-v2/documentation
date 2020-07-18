@@ -16,3 +16,4 @@ Exclusivo **Front End**:
 
 8) Todos los componentes se escriben dentro de una carpeta con el nombre del componente con la primer letra en mayúscula.
 
+9) En un principio, si una interfaz se usa solo en un archivo, la interfaz se declara ahí mismo. Si se necesita en dos archivos distintos, se la declara en un archivo interface.ts, en la carpeta donde se lo considere más apropiado.
