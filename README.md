@@ -5,7 +5,7 @@ Trabajo Práctico Profesional, FIUBA, 2020
 [Convenciones](conventions/conventions.md)
 
 # Setup
-[back-end](setup/backend.md)
+[backend](setup/backend.md)
 
 # Deploy
 [deploy](deploy.md)
