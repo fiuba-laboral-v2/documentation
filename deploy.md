@@ -1,94 +1,79 @@
-# Apache
-I installed and set up apache following this [instructions](https://www.digitalocean.com/community/tutorials/como-instalar-el-servidor-web-apache-en-ubuntu-18-04-es): 
-## Set up
-### Install apache
-* `sudo apt update`
-* `sudo apt install apache2`
-### Allow port 80 for unencrypted web traffic
-* `sudo ufw allow 'Apache'`
-* `sudo ufw enable`
-### Create folder to serve html and we give ourselves user permission
-* `sudo mkdir -p /var/www/laboral-v2.fi.uba.ar/html`
-* `sudo chown -R $USER:$USER /var/www/laboral-v2.fi.uba.ar/html`
-* `sudo chmod -R 755 /var/www/laboral-v2.fi.uba.ar`
-* `nano /var/www/laboral-v2.fi.uba.ar/html/index.html` -> load html here
-### Set default settings:
-  * `sudo nano /etc/apache2/sites-available/laboral-v2.fi.uba.ar.conf`
+# Deploy
 
-Write the following: 
-``` 
-<VirtualHost *:80>
-    ProxyPass /graphql http://localhost:5006/graphql
-    ServerAdmin admin@$HOSTNAME
-    ServerName $HOSTNAME
-    ServerAlias www.$HOSTNAME
-    DocumentRoot /var/www/html
-    Alias "/laboral" $SERVED_HTML_PATH
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-```
-* `sudo a2ensite "$HOSTNAME.conf"`  
-Where HOSTNAME is the name of the host that will be written in the browser when using the application.  
+## Pasos iniciales
 
-* `sudo a2enmod proxy`
-* `sudo a2enmod proxy_http`
-* `sudo systemctl restart apache2`
+En el servidor se asume que están instalados:
+* Linux
+* Apache ([instrucciones de instalación](https://ubuntu.com/tutorials/install-and-configure-apache#2-installing-apache))
+* Docker ([instrucciones de instalación](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository))
+* Docker Compose ([instrucciones de instalación](https://docs.docker.com/compose/install/#install-compose))
 
-## Useful commands:
-* List the application profiles inside ufw by typing: `sudo ufw app list`
-* Verify web server: `sudo systemctl status apache2`
-* Returns some addresses separated by spaces: `hostname -I`
-* Returns the public IP address in the way it is perceived from an external place on the internet: `curl -4 icanhazip.com`
-* Stop your web server: `sudo systemctl stop apache2`
-* Start your web server: `sudo systemctl start apache2`
-* Stop and restart your web server: `sudo systemctl restart apache2`
-* Recharge Apache: `sudo systemctl reload apache2`
-* Deshabilitar : `sudo systemctl disabled apache2`
-* Habilitar : `sudo systemctl enabled apache2`
-# Travis
-The following instructions were based using this [guide](https://github.com/dwyl/learn-travis/blob/master/encrypted-ssh-keys-deployment.md)
-## Create unencrypted key for deployment
-### Log-in to Your Server Instance
-```
-ssh user@ip.add.ress.here
-```
-### Create a new SSH Key
-```
-cd ~/.ssh
-ssh-keygen -t rsa -b 4096 -C "TravisCIDeployKey"
-```
-### Add the new SSH Key to the authorized_keys File
-```
-cat id_rsa.pub >> authorized_keys
-```
-### Securely Download the SSH Key
-* On your repository: 
-```
-echo "deploy_key" >> .gitignore
-```
-* `scp user@ip.add.ress.here:/root/.ssh/id_rsa  ./deploy_key`
-### Install Travis-CI CLI
-```
-gem install travis
-```
-### Login to travis pro (endpoint .com)
-```
-travis login --pro
-```
-### Encrypt the Private Key
-```
-touch .travis.yml && travis encrypt-file ./deploy_key --add
-```
-Push the generated `deploy_key.enc` to your repository
-### Add te folowing to your travis.yml file
-```
-before_install:
-- openssl aes-256-cbc -K $encrypted_<number>_key -iv $encrypted_<number>_iv
-  -in deploy_key.enc -out ./deploy_key -d
-- eval "$(ssh-agent -s)"
-- chmod 600 ./deploy_key
-- echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-- ssh-add ./deploy_key
-```
-Where the number of $encrypted_<number>_key and $encrypted_<number>_iv can be found in the enviroment variables in the setting of your repo in travis.
+La aplicación a deployar es un html estático compilado de una aplicación React (`front-end`) y un servidor (`back-end`) que persiste en una base de datos PostgreSQL.
+
+Se exponen ambos via Apache, en las direcciones "/laboral" y "/graphql" respectivamente.
+
+Para utilizar otras direcciones (como "/") es necesario modificar la configuración de apache en `scripts/set_default_settings.sh` antes de ejecutar los scripts de deploy.
+
+## Repositorio de deploy
+
+En el repositorio [deploy](https://github.com/fiuba-laboral-v2/deploy) hay scripts que se pueden correr en cualquier máquina, y se conectan al servidor via ssh:
+* `NODE_ENV=production yarn deploy:setup`
+* `NODE_ENV=production yarn deploy:backend`
+* `NODE_ENV=production yarn deploy:frontend`
+
+En la máquina que vayan a correr los script se asumen instalados:
+* Linux
+* Node version manager (o nvm, [instrucciones de instalación](https://github.com/nvm-sh/nvm#install--update-script)), e instalado vía nvm, node v14.15.0.
+* Yarn: `sudo apt install --no-install-recommends yarn`
+
+Pasos a seguir:
+
+1. Forkear los repositorios a otro usuario u organización de GitHub
+2. Nombrar "production" al branch principal de `front-end` y `back-end`
+3. Actualizar las variables de configuración en la sección "production" de los siguientes archivos del repo `deploy`:
+   * `src/config/deploy.ts`
+   * `src/config/Repository/Frontend.ts`
+   * `src/config/Repository/Backend.ts`
+4. Sobre la carpeta raíz del repo `deploy`, ejecutar el comando `NODE_ENV=production yarn deploy:setup`
+5. Tras pushear cambios al branch "production" de los repos `front-end` o `back-end`, ejecutar el comando de deploy correspondiente (`NODE_ENV=production yarn deploy:frontend` y `NODE_ENV=production yarn deploy:backend`, respectivamente)
+
+Tener en cuenta que el deploy fue preparado para un ambiente de staging que no usa https. Pueden ser necesarias modificaciones para contemplar ese caso.
+
+Después de cualquier modificación en el repo de deploy hay que correr nuevamente `yarn install` ya que así se vuelve a compilar el código typescript.
+
+### Variables de configuración
+
+* `src/config/deploy.ts`
+   * `hostname`: desde el que se accede públicamente a lo que sirve apache (ejemplo: "bolsadetrabajo.fi.uba.ar")
+   * `sshAddress`: para conexión ssh (ejemplo: "dylan@bolsadetrabajo.fi.uba.ar")
+   * `user`: usuario de la sesión en el server (ejemplo: "dylan")
+* `src/config/Repository/Frontend.ts`
+   * `publicUrl`: url completa desde donde se va acceder al frontend de la aplicación (ejemplo: https://bolsadetrabajo.fi.uba.ar)
+   * `gitRepository.url`: url ".git" del repositorio
+   * `gitRepository.location`: carpeta donde se va a clonar el repositorio
+   * `gitRepository.branch`: nombre del branch
+* `src/config/Repository/Backend.ts`
+   * `containerName`: nombre del container de docker que va a ser creado o actualizado al deployar el backend
+   * `gitRepository.url`: url ".git" del repositorio
+   * `gitRepository.location`: carpeta donde se va a clonar el repositorio
+   * `gitRepository.branch`: nombre del branch
+
+### Qué hace `NODE_ENV=production yarn deploy:setup`
+
+En `scripts/setup.js` se ejecuta via ssh el archivo `setup.sh`. Este prepara a Apache para exponer el frontend y el backend. Este usa a `set_default_settings.sh`. En dichos archivos está descrito el propósito de cada paso.
+
+### Qué hace `NODE_ENV=production yarn deploy:frontend`
+
+En `scripts/deploy_frontend.ts` se clona la última versión del repositorio, se compila el html con sus assets, se borra el html preexistente y se lo reemplaza con el recién compilado.
+
+### Qué hace `NODE_ENV=production yarn deploy:backend`
+
+En `scripts/deploy_backend.ts` se clona o actualiza el repositorio en la carpeta especificada, se construye y se ejecuta el contenedor de docker via docker-compose, y se corren las migraciones sobre la base de datos. Finalmente, se corre `docker image prune --force` para eliminar las imágenes sin usar en docker.
+
+Se utiliza un contenedor de PostgreSQL en docker, y los datos de la aplicación se almacenan en un volumen de docker. 
+
+En el repositorio `back-end`, el archivo `docker-compose.yml` muestra la configuración para construir y ejecutar los contenedores de la base de datos y del servidor. Ambos tienen seteado `restart: always`, es decir que al fallar o tras un corte de luz van a volver a levantarse solos.
+
+En `Dockerfile` se especifica que el contenedor del server corre `yarn pm2:start`. En `package.json`, sección de `scripts` se ve que este comando ejecuta la aplicación node via pm2, que básicamente se encarga de instanciar múltiples procesos y manejar su creación y destrucción según reglas definidas en `config/process.yml`, y documentadas [en el sitio de pm2](https://pm2.keymetrics.io/docs/usage/application-declaration/#advanced-features).
+
+Hoy se levanta en modo cluster ([documentación](https://pm2.keymetrics.io/docs/usage/cluster-mode/)), con `instances: max` (una por núcleo del procesador), y `max_memory_restart: 250M`. Modificar según sea necesario.
