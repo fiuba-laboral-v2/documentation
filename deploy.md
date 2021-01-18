@@ -17,9 +17,9 @@ Para utilizar otras direcciones (como "/") es necesario modificar la configuraci
 ## Repositorio de deploy
 
 En el repositorio [deploy](https://github.com/fiuba-laboral-v2/deploy) hay scripts que se pueden correr en cualquier máquina, y se conectan al servidor via ssh:
-* `yarn deploy:setup`
-* `yarn deploy:backend`
-* `yarn deploy:frontend`
+* `NODE_ENV=production yarn deploy:setup`
+* `NODE_ENV=production yarn deploy:backend`
+* `NODE_ENV=production yarn deploy:frontend`
 
 En la máquina que vayan a correr los script se asumen instalados:
 * Linux
@@ -34,10 +34,12 @@ Pasos a seguir:
    * `src/config/deploy.ts`
    * `src/config/Repository/Frontend.ts`
    * `src/config/Repository/Backend.ts`
-4. Sobre la carpeta raíz del repo `deploy`, ejecutar el comando `yarn deploy:setup`
-5. Tras pushear cambios al branch "production" de los repos `front-end` o `back-end`, ejecutar el comando de deploy correspondiente (`yarn deploy:frontend` y `yarn deploy:backend`, respectivamente)
+4. Sobre la carpeta raíz del repo `deploy`, ejecutar el comando `NODE_ENV=production yarn deploy:setup`
+5. Tras pushear cambios al branch "production" de los repos `front-end` o `back-end`, ejecutar el comando de deploy correspondiente (`NODE_ENV=production yarn deploy:frontend` y `NODE_ENV=production yarn deploy:backend`, respectivamente)
 
 Tener en cuenta que el deploy fue preparado para un ambiente de staging que no usa https. Pueden ser necesarias modificaciones para contemplar ese caso.
+
+Después de cualquier modificación en el repo de deploy hay que correr nuevamente `yarn install` ya que así se vuelve a compilar el código typescript.
 
 ### Variables de configuración
 
@@ -56,15 +58,15 @@ Tener en cuenta que el deploy fue preparado para un ambiente de staging que no u
    * `gitRepository.location`: carpeta donde se va a clonar el repositorio
    * `gitRepository.branch`: nombre del branch
 
-### Qué hace `yarn deploy:setup`
+### Qué hace `NODE_ENV=production yarn deploy:setup`
 
 En `scripts/setup.js` se ejecuta via ssh el archivo `setup.sh`. Este prepara a Apache para exponer el frontend y el backend. Este usa a `set_default_settings.sh`. En dichos archivos está descrito el propósito de cada paso.
 
-### Qué hace `yarn deploy:frontend`
+### Qué hace `NODE_ENV=production yarn deploy:frontend`
 
 En `scripts/deploy_frontend.ts` se clona la última versión del repositorio, se compila el html con sus assets, se borra el html preexistente y se lo reemplaza con el recién compilado.
 
-### Qué hace `yarn deploy:backend`
+### Qué hace `NODE_ENV=production yarn deploy:backend`
 
 En `scripts/deploy_backend.ts` se clona o actualiza el repositorio en la carpeta especificada, se construye y se ejecuta el contenedor de docker via docker-compose, y se corren las migraciones sobre la base de datos. Finalmente, se corre `docker image prune --force` para eliminar las imágenes sin usar en docker.
 
