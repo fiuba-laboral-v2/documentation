@@ -66,7 +66,7 @@ En `scripts/deploy_frontend.ts` se clona la última versión del repositorio, se
 
 ### Qué hace `yarn deploy:backend`
 
-En `scripts/deploy_backend.ts` se clona o actualiza el repositorio en la carpeta especificada, se construye y se ejecuta el contenedor de docker via docker-compose, y se corren las migraciones sobre la base de datos.
+En `scripts/deploy_backend.ts` se clona o actualiza el repositorio en la carpeta especificada, se construye y se ejecuta el contenedor de docker via docker-compose, y se corren las migraciones sobre la base de datos. Finalmente, se corre `docker image prune --force` para eliminar las imágenes sin usar en docker.
 
 Se utiliza un contenedor de PostgreSQL en docker, y los datos de la aplicación se almacenan en un volumen de docker. 
 
