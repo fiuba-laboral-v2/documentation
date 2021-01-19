@@ -7,12 +7,11 @@ En el servidor se asume que están instalados:
 * Apache ([instrucciones de instalación](https://ubuntu.com/tutorials/install-and-configure-apache#2-installing-apache))
 * Docker ([instrucciones de instalación](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository))
 * Docker Compose ([instrucciones de instalación](https://docs.docker.com/compose/install/#install-compose))
+* Un server de ssh: `sudo apt install openssh-server openssh-client`
 
 La aplicación a deployar es un html estático compilado de una aplicación React (`front-end`) y un servidor (`back-end`) que persiste en una base de datos PostgreSQL.
 
-Se exponen ambos via Apache, en las direcciones "/laboral" y "/graphql" respectivamente.
-
-Para utilizar otras direcciones (como "/") es necesario modificar la configuración de apache en `scripts/set_default_settings.sh` antes de ejecutar los scripts de deploy.
+Se exponen ambos via Apache, en dos direcciones diferentes (por default, "/" y "/graphql" respectivamente).
 
 ## Repositorio de deploy
 
@@ -34,8 +33,9 @@ Pasos a seguir:
    * `src/config/deploy.ts`
    * `src/config/Repository/Frontend.ts`
    * `src/config/Repository/Backend.ts`
-4. Sobre la carpeta raíz del repo `deploy`, ejecutar el comando `NODE_ENV=production yarn deploy:setup`
-5. Tras pushear cambios al branch "production" de los repos `front-end` o `back-end`, ejecutar el comando de deploy correspondiente (`NODE_ENV=production yarn deploy:frontend` y `NODE_ENV=production yarn deploy:backend`, respectivamente)
+4. Instalar las dependencias del repo de deploy: `yarn install`
+5. Sobre la carpeta raíz del repo `deploy`, ejecutar el comando `NODE_ENV=production yarn deploy:setup`
+6. Tras pushear cambios al branch "production" de los repos `front-end` o `back-end`, ejecutar el comando de deploy correspondiente (`NODE_ENV=production yarn deploy:frontend` y `NODE_ENV=production yarn deploy:backend`, respectivamente)
 
 Tener en cuenta que el deploy fue preparado para un ambiente de staging que no usa https. Pueden ser necesarias modificaciones para contemplar ese caso.
 
@@ -45,6 +45,7 @@ Después de cualquier modificación en el repo de deploy hay que correr nuevamen
 
 * `src/config/deploy.ts`
    * `hostname`: desde el que se accede públicamente a lo que sirve apache (ejemplo: "bolsadetrabajo.fi.uba.ar")
+   * `frontendPath`: path en la url donde se accede a la aplicación (con "/" al principio y no al final, por ejemplo "/" o "/frontend")
    * `sshAddress`: para conexión ssh (ejemplo: "dylan@bolsadetrabajo.fi.uba.ar")
    * `user`: usuario de la sesión en el server (ejemplo: "dylan")
 * `src/config/Repository/Frontend.ts`
