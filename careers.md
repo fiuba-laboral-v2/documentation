@@ -46,5 +46,5 @@ yarn db:seed:up:production <timestamp>-add-<nombre de la carrera>-career.js
 ```
 Y para eliminar la carrera , se debe ejecutar:
 ```bash
-yarn db:seed:down:production~~~~ <timestamp>-add-<nombre de la carrera>-career.js
+yarn db:seed:down:production <timestamp>-add-<nombre de la carrera>-career.js
 ```
