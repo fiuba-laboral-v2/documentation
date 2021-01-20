@@ -1,25 +1,23 @@
 # Tablas de log de acciones del administrador
 
-Existe una tabla para loguear las acciones de moderación por cada tipo de entidad,
-es decir, una tabla para Companies, Applicants, Offers y JobApplications.  
-Cada vez que un administrador modera una de estas entidades ya sea rechazándolas, 
-aprobándolas o moviéndolas a pendiente, se loguea en la tabla correspondiente el estado
-al cual la entidad fue actualizada, una referencia al admin que realizó la acción,
-una referencia a la entidad moderada, el mensaje de rechazo en caso de haber rechazado 
-la entidad y la fecha de creación del evento.
+Existe una tabla para registrar el historial de las acciones de moderación 
+(aprobación y rechazo) por cada tipo de entidad, es decir, una tabla para 
+`Companies`, otra para `Applicants`, otra para `Offers` y otra para `JobApplications`.  
+
+Cada vez que un administrador aprueba o rechaza una de estas entidades, se 
+loguea en la tabla correspondiente el nuevo estado de la entidad 
+(aprobado, rechazado, pendiente de aprobación), una referencia al admin que 
+realizó la acción (`userUuid`), una referencia a la entidad moderada, el motivo 
+de rechazo en caso de haber rechazado la entidad y la fecha en que sucedió el 
+evento (`createdAt`).
 
 Estas tablas se llaman:
- * ApplicantApprovalEvents
- * CompanyApprovalEvents
- * OfferApprovalEvents
- * JobApplicationApprovalEvents
+ * `ApplicantApprovalEvents`
+ * `CompanyApprovalEvents`
+ * `OfferApprovalEvents`
+ * `JobApplicationApprovalEvents`
 
-Estas tablas actualmente no se muestran a ningún usuario pero tienen el
-potencial de ser utilizadas para saber qué acciones realizó un administrador mostrando 
-los datos que estas tablas contienen, explicados anteriormente.  
-
-En el futuro podría usarse para mostrar a todos los administradores concentrando 
-la información de las cuatro tablas en una sola sección de manera tal de poder ver 
-las acciones de moderación ya que podría ser muy útil consultar esta
-información donde se conoce quién realizó la moderación, cuando, y en caso de 
-rechazo, el motivo.
+No hay frontend para estas tablas, pero es útil saber que existen para 
+responder consultas de las secretarías. También, podría agregarse una 
+sección para admins que junte estas cuatro tablas y las presente en orden 
+cronológico.
