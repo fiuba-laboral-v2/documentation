@@ -2,7 +2,8 @@
 
 Existe una tabla para registrar el historial de las acciones de moderación 
 (aprobación y rechazo) por cada tipo de entidad, es decir, una tabla para 
-Companies, Applicants, Offers y JobApplications. 
+`Companies`, otra para `Applicants`, otra para `Offers` y otra para `JobApplications`.  
+
 Cada vez que un administrador modera una de estas entidades ya sea rechazándolas, 
 aprobándolas o moviéndolas a pendiente, se loguea en la tabla correspondiente 
 el estado al cual la entidad fue actualizada, una referencia al admin que 
