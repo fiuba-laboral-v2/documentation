@@ -13,3 +13,13 @@ Estas tablas se llaman:
  * CompanyApprovalEvents
  * OfferApprovalEvents
  * JobApplicationApprovalEvents
+
+Estas tablas actualmente no se muestran a ningún usuario pero tienen el
+potencial de ser utilizadas para saber qué acciones realizó un administrador mostrando 
+los datos que estas tablas contienen, explicados anteriormente.  
+
+En el futuro podría usarse para mostrar a todos los administradores concentrando 
+la información de las cuatro tablas en una sola sección de manera tal de poder ver 
+las acciones de moderación ya que podría ser muy útil consultar esta
+información donde se conoce quién realizó la moderación, cuando, y en caso de 
+rechazo, el motivo.
