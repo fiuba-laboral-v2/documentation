@@ -7,7 +7,7 @@ un nuevo archivo en el directorio de seeders productivos del backend (`src/seede
 Este archivo debe seguir la convención de nombres del resto de archivos productivos,
 es decir, `<timestamp>-add-<nombre de la carrera>-career.ts`.
 
-> **_NOTA:_**  para generar el timestamp se puede ejecutar el siguiente comando
+> **_NOTA:_** para generar el timestamp se puede ejecutar el siguiente comando:
 > `ruby -e \"puts Time.now.strftime('%Y%m%d%H%M%S')\"`
 
 Y se debe escribir un comando para crear y dar de baja la misma de la base de datos
