@@ -5,8 +5,8 @@ Existe una tabla para registrar el historial de las acciones de moderación
 `Companies`, otra para `Applicants`, otra para `Offers` y otra para `JobApplications`.  
 
 Cada vez que un administrador aprueba o rechaza una de estas entidades, se 
-loguea en la tabla correspondiente el estado al cual la entidad fue 
-actualizada, una referencia al admin que realizó la acción, una referencia a 
+loguea en la tabla correspondiente el nuevo estado de la entidad 
+(aprobado, rechazado, pendiente de aprobación), el userUuid al admin que realizó la acción, una referencia a 
 la entidad moderada, el mensaje de rechazo en caso de haber rechazado la 
 entidad y la fecha de creación del evento.
 
