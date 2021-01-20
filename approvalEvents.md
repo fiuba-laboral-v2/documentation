@@ -1,4 +1,4 @@
-# Tablas de log de acciones de admin
+# Tablas de log de acciones del administrador
 
 Existe una tabla para loguear las acciones de moderación por cada tipo de entidad,
 es decir, una tabla para Companies, Applicants, Offers y JobApplications.  

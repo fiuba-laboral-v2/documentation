@@ -7,4 +7,4 @@ Trabajo Práctico Profesional, FIUBA, 2020
 
 * [Deploy](deploy.md)
 
-* [Tablas de log de acciones de admin](approvalEvents.md)
+* [Tablas de log de acciones del administrador](approvalEvents.md)
