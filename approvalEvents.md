@@ -6,9 +6,9 @@ Existe una tabla para registrar el historial de las acciones de moderación
 
 Cada vez que un administrador aprueba o rechaza una de estas entidades, se 
 loguea en la tabla correspondiente el nuevo estado de la entidad 
-(aprobado, rechazado, pendiente de aprobación), el userUuid al admin que realizó la acción, una referencia a 
-la entidad moderada, el mensaje de rechazo en caso de haber rechazado la 
-entidad y la fecha de creación del evento.
+(aprobado, rechazado, pendiente de aprobación), una referencia al admin que 
+realizó la acción (userUuid), una referencia a la entidad moderada, el mensaje 
+de rechazo en caso de haber rechazado la entidad y la fecha de creación del evento.
 
 Estas tablas se llaman:
  * ApplicantApprovalEvents
