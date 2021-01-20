@@ -21,6 +21,6 @@ Las notificaciones se guardan en las tablas `ApplicantNotifications`,
     
 ###### Eliminación periódica
 
-Finalmente, hay que tener en cuenta que puede ser necesario eliminar las 
-notificaciones periódicamente en las tres tablas de manera tal de evitar 
-tener acumulado muchas notificaciones viejas en las tablas.
+Hay que tener en cuenta que las notificaciones nunca se borran. 
+Si el espacio que ocupan en disco se vuelve un problema, se pueden 
+eliminar manualmente las notificaciones anteriores a determinada fecha.
