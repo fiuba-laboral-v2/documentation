@@ -3,7 +3,7 @@
 Existe la posibilidad de que el sistema se alimente de los datos del 
 SIU Guarani. Esto traería la ventaja de la certificación de validez de los 
 datos de los estudiantes y graduados a la hora de utilizar la plataforma.
-Actualmente se requiere que el usuario complete datos como el Nombre, 
+Actualmente se requiere que el usuario complete datos como el nombre, 
 el padrón y el avance de sus carreras. Todo esto podría automatizarse 
 posiblemente con un sync de datos en el login del usuario.
 
