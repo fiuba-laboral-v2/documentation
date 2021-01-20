@@ -23,5 +23,5 @@ La tabla `ApplicantCareers` contiene la siguiente información:
     * applicantUuid: Una referencia al `Applicant`
 
 
-> **__NOTA:_**  Si FIUBA ofrece una nueva carrera o renombra una preexistente 
+> **_NOTA:_**  Si FIUBA ofrece una nueva carrera o renombra una preexistente 
 > están en [Carreras](careers.md)
