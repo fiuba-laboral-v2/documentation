@@ -5,7 +5,7 @@
 Para agregar una nueva carrera a la base de datos productiva se debe agregar 
 un nuevo archivo en el directorio de seeders productivos del backend (`src/seeders/production`).
 Este archivo debe seguir la convención de nombres del resto de archivos productivos,
-es decir, `<timestamp>-add-<nombre de la carrera>-career`.
+es decir, `<timestamp>-add-<nombre de la carrera>-career.ts`.
 
 Y se debe escribir un comando para crear y dar de baja la misma de la base de datos
 de la siguiente manera:
@@ -39,6 +39,9 @@ export = {
 };
 
 ```
+
+> **_NOTE:_**  Notar que se usa como extensión `js`, esto es porque los seeders 
+> se corren sobre los archivos compilados de Typescript a Javascript.
 
 Para correr este seeder y agregar la carrera, se debe ejecutar:
 ```bash
