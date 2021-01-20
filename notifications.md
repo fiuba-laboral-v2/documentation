@@ -1,12 +1,6 @@
 # Notificaciones
 
-Las Notificaciones son entidades que los administradores, usuarios de empresa y 
-postulantes pueden ver a medida que suceden distintos tipos de eventos. 
-Para el modelado de las mismas creamos tres tablas de notificaciones, 
-una para cada tipo de usuario respectivamente. 
-
-Las tablas son ApplicantNotifications, CompanyNotifications y AdminNotifications y 
-los tipos de notificaciones que pueden ver cada uno de ellos son los siguientes:
+Las notificaciones se guardan en las tablas:
 
 * `ApplicantNotifications`:
     * Postulación a oferta de trabajo aprobada (`approvedJobApplication`)
