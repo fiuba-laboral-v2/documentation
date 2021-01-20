@@ -10,3 +10,5 @@ Trabajo Práctico Profesional, FIUBA, 2020
 * [Tablas de log de acciones del administrador](approvalEvents.md)
 
 * [Notificaciones](notifications.md)
+
+* [Integración de la aplicación con los datos del SIU Guaraní](siuGuaraniIntegration.md)
