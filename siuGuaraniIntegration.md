@@ -21,3 +21,7 @@ La tabla `ApplicantCareers` contiene la siguiente información:
     * approvedSubjectCount: La cantidad de materias aprobadas si no se graduó de la carrera (Sin CBC)
     * isGraduate: Un booleano para saber si se graduó de la carrera
     * applicantUuid: Una referencia al `Applicant`
+
+
+> **_NOTE:_**  Si FIUBA ofrece una nueva carrera o renombra una preexistente 
+> están en [Carreras](careers.md)
