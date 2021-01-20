@@ -3,11 +3,10 @@
 Una posible integración es periódicamente actualizar las carreras que 
 cursa cada `Applicant` y su avance en ellas.
 
-Las carreras de un postulante están persistidas en la tabla `ApplicantCareers`, 
-la cual es una tabla de join entre las tablas `Applicants` y Careers, 
-Y hay que tener en cuenta que un `Applicant` pertenece a un `User`. 
-Entonces la integración consiste en usar un servicio externo donde usando el 
-dni del usuario asociado al applicant, obtener qué carreras tiene el mismo.
+El avance de un Applicant en una Career está en la tabla `ApplicantCareers`. 
+Un `Applicant` "pertenece a" un `User`. En lo concreto, habría que, para todo 
+`Applicant`, obtener el dni de su `User` y actualizar sus `ApplicantCareers` 
+con la información dada por el SIU.
 
 La tabla ApplicantCareers contiene la siguiente información:
     * careerCode: una referencia al código de carrera en la tabla Careers
