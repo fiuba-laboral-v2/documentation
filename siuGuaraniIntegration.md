@@ -9,7 +9,7 @@ Un `Applicant` "pertenece a" un `User`. En lo concreto, habría que, para todo
 con la información dada por el SIU.
 
 La tabla ApplicantCareers contiene la siguiente información:
-    * careerCode: una referencia al código de carrera en la tabla Careers
+    * careerCode: Una referencia al código de carrera en la tabla Careers
     * currentCareerYear: El año de cursada en la facultad si no se graduó de la carrera (Sin CBC)
     * approvedSubjectCount: La cantidad de materias aprobadas si no se graduó de la carrera (Sin CBC)
     * isGraduate: Un booleano para saber si se graduó de la carrera
