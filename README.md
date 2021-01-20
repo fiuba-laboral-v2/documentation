@@ -1,11 +1,10 @@
 # Documentation
 Trabajo Práctico Profesional, FIUBA, 2020
 
-# Convenciones
-[Convenciones](conventions/conventions.md)
+* [Convenciones](conventions/conventions.md)
 
-# Setup
-[backend](setup/backend.md)
+* [Setup backend](setup/backend.md)
 
-# Deploy
-[Deploy](deploy.md)
+* [Deploy](deploy.md)
+
+* [Tablas de log de acciones del administrador](approvalEvents.md)
