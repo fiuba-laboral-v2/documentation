@@ -1,6 +1,6 @@
 # Tablas de log de acciones del administrador
 
-Existe una tabla para loguear las acciones de moderación por cada tipo de entidad,
+Existe una tabla para registrar el historial de las acciones de moderación por cada tipo de entidad,
 es decir, una tabla para Companies, Applicants, Offers y JobApplications.  
 Cada vez que un administrador modera una de estas entidades ya sea rechazándolas, 
 aprobándolas o moviéndolas a pendiente, se loguea en la tabla correspondiente el estado
