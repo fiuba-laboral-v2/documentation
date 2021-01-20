@@ -24,6 +24,6 @@ los tipos de notificaciones que pueden ver cada uno de ellos son los siguientes:
     
 ###### Eliminación periódica
 
-Por lo tanto puede ser necesario eliminar las notificaciones periódicamente
-en las tres tablas de manera tal de evitar tener acumulado muchas notificaciones
-viejas en las tablas
+Finalmente, hay que tener en cuenta que puede ser necesario eliminar las 
+notificaciones periódicamente en las tres tablas de manera tal de evitar 
+tener acumulado muchas notificaciones viejas en las tablas.
