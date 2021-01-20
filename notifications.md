@@ -1,8 +1,9 @@
 # Notificaciones
 
 Las Notificaciones son entidades que los administradores, usuarios de empresa y 
-postulantes pueden ver según distintos tipo de eventos. Para el modelado de las 
-mismas creamos tres tablas de notificaciones, una para cada tipo de usuario respectivamente. 
+postulantes pueden ver a medida que suceden distintos tipos de eventos. 
+Para el modelado de las mismas creamos tres tablas de notificaciones, 
+una para cada tipo de usuario respectivamente. 
 
 Las tablas son ApplicantNotifications, CompanyNotifications y AdminNotifications y 
 los tipos de notificaciones que pueden ver cada uno de ellos son los siguientes:
