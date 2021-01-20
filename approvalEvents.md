@@ -12,10 +12,10 @@ de rechazo en caso de haber rechazado la entidad y la fecha en que sucedió el
 evento (`createdAt`).
 
 Estas tablas se llaman:
- * ApplicantApprovalEvents
- * CompanyApprovalEvents
- * OfferApprovalEvents
- * JobApplicationApprovalEvents
+ * `ApplicantApprovalEvents`
+ * `CompanyApprovalEvents`
+ * `OfferApprovalEvents`
+ * `JobApplicationApprovalEvents`
 
 Estas tablas actualmente no se muestran a ningún usuario pero tienen el
 potencial de ser utilizadas para saber qué acciones realizó un administrador mostrando 
