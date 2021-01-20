@@ -11,4 +11,4 @@ Trabajo Práctico Profesional, FIUBA, 2020
 
 * [Notificaciones](notifications.md)
 
-* [Integración de la aplicación con los datos del Siu Guaraní](siuGuaraniIntegration.md)
+* [Integración de la aplicación con los datos del SIU Guaraní](siuGuaraniIntegration.md)

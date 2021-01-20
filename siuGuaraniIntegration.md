@@ -1,4 +1,4 @@
-# Integración de la aplicación con los datos del Siu Guaraní
+# Integración de la aplicación con los datos del SIU Guaraní
 
 La integración consiste en actualizar qué carreras los postulantes están cursando o 
 finalizaron y su progreso. También implica actualizar qué carreras ofrece la facultad
