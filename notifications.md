@@ -1,6 +1,8 @@
 # Notificaciones
 
-Las notificaciones se guardan en las tablas:
+Las notificaciones se guardan en las tablas `ApplicantNotifications`, 
+`CompanyNotifications` y `AdminNotifications` y los tipos de notificación 
+(en la columna `type` de cada tabla) son:
 
 * `ApplicantNotifications`:
     * Postulación a oferta de trabajo aprobada (`approvedJobApplication`)
