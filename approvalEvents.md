@@ -7,7 +7,7 @@ Existe una tabla para registrar el historial de las acciones de moderación
 Cada vez que un administrador aprueba o rechaza una de estas entidades, se 
 loguea en la tabla correspondiente el nuevo estado de la entidad 
 (aprobado, rechazado, pendiente de aprobación), una referencia al admin que 
-realizó la acción (userUuid), una referencia a la entidad moderada, el motivo 
+realizó la acción (`userUuid`), una referencia a la entidad moderada, el motivo 
 de rechazo en caso de haber rechazado la entidad y la fecha en que sucedió el 
 evento (`createdAt`).
 
@@ -17,12 +17,7 @@ Estas tablas se llaman:
  * `OfferApprovalEvents`
  * `JobApplicationApprovalEvents`
 
-Estas tablas actualmente no se muestran a ningún usuario pero tienen el
-potencial de ser utilizadas para saber qué acciones realizó un administrador mostrando 
-los datos que estas tablas contienen, explicados anteriormente.  
-
-En el futuro podría usarse para mostrar a todos los administradores concentrando 
-la información de las cuatro tablas en una sola sección de manera tal de poder ver 
-las acciones de moderación ya que podría ser muy útil consultar esta
-información donde se conoce quién realizó la moderación, cuando, y en caso de 
-rechazo, el motivo.
+No hay frontend para estas tablas, pero es útil saber que existen para 
+responder consultas de las secretarías. También, podría agregarse una 
+sección para admins que junte estas cuatro tablas y las presente en orden 
+cronológico.
