@@ -13,4 +13,4 @@ La tabla ApplicantCareers contiene la siguiente información:
     * currentCareerYear: El año de cursada en la facultad si no se graduó de la carrera (Sin CBC)
     * approvedSubjectCount: La cantidad de materias aprobadas si no se graduó de la carrera (Sin CBC)
     * isGraduate: Un booleano para saber si se graduó de la carrera
-    * applicantUuid: Una referencia a la clave primaria de la tabla Applicants
+    * applicantUuid: Una referencia al Applicant
