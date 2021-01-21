@@ -29,13 +29,23 @@ Pasos a seguir:
 
 1. Forkear los repositorios a otro usuario u organización de GitHub
 2. Nombrar "production" al branch principal de `front-end` y `back-end`
-3. Actualizar las variables de configuración en la sección "production" de los siguientes archivos del repo `deploy`:
+3. Actualizar las variables de configuración (explicadas más abajo) en la sección "production" de los siguientes archivos del repo `deploy`:
    * `src/config/deploy.ts`
    * `src/config/Repository/Frontend.ts`
    * `src/config/Repository/Backend.ts`
 4. Instalar las dependencias del repo de deploy: `yarn install`
 5. Sobre la carpeta raíz del repo `deploy`, ejecutar el comando `NODE_ENV=production yarn deploy:setup`
-6. Tras pushear cambios al branch "production" de los repos `front-end` o `back-end`, ejecutar el comando de deploy correspondiente (`NODE_ENV=production yarn deploy:frontend` y `NODE_ENV=production yarn deploy:backend`, respectivamente)
+6. Modificar en el server el archivo `~/fiuba-laboral-v2/back-end/.env`, agregar variables tal que quede:
+   ```
+    NODE_ENV=production
+    DATABASE_URL=[postgresql://user:password@netlocation:port/dbname]
+    JWT_SECRET=[cualquier string: se utiliza para encriptar las contraseñas]
+    EMAIL_API_APPLICATION_ID=[lo que se pone en <aplic_id xsi:type="xsd:string">]
+    EMAIL_API_PASSWORD=[lo que se pone en <password xsi:type="xsd:string">]
+    EMAIL_API_URL=https://services.fi.uba.ar/misc.php
+    FIUBA_USERS_API_URL=https://services.fi.uba.ar/usuarios.php
+   ```
+7. Tras pushear cambios al branch "production" de los repos `front-end` o `back-end`, ejecutar el comando de deploy correspondiente (`NODE_ENV=production yarn deploy:frontend` y `NODE_ENV=production yarn deploy:backend`, respectivamente)
 
 Tener en cuenta que el deploy fue preparado para un ambiente de staging que no usa https. Pueden ser necesarias modificaciones para contemplar ese caso.
 
@@ -71,9 +81,7 @@ En `scripts/deploy_frontend.ts` se clona la última versión del repositorio, se
 
 En `scripts/deploy_backend.ts` se clona o actualiza el repositorio en la carpeta especificada, se construye y se ejecuta el contenedor de docker via docker-compose, y se corren las migraciones sobre la base de datos. Finalmente, se corre `docker image prune --force` para eliminar las imágenes sin usar en docker.
 
-Se utiliza un contenedor de PostgreSQL en docker, y los datos de la aplicación se almacenan en un volumen de docker. 
-
-En el repositorio `back-end`, el archivo `docker-compose.yml` muestra la configuración para construir y ejecutar los contenedores de la base de datos y del servidor. Ambos tienen seteado `restart: always`, es decir que al fallar o tras un corte de luz van a volver a levantarse solos.
+En el repositorio `back-end`, el archivo `docker-compose.yml` muestra la configuración para construir y ejecutar los contenedores. Tienen seteado `restart: always`, es decir que al fallar o tras un corte de luz van a volver a levantarse solos.
 
 En `Dockerfile` se especifica que el contenedor del server corre `yarn pm2:start`. En `package.json`, sección de `scripts` se ve que este comando ejecuta la aplicación node via pm2, que básicamente se encarga de instanciar múltiples procesos y manejar su creación y destrucción según reglas definidas en `config/process.yml`, y documentadas [en el sitio de pm2](https://pm2.keymetrics.io/docs/usage/application-declaration/#advanced-features).
 
