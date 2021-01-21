@@ -7,9 +7,10 @@ Actualmente este modelo no se usa pero es útil saber que existen en caso de que
 que una empresa pueda agregar a su perfil diferentes números de contacto.
 
 Para agregarlos se tendría que agregar al formulario de edición del perfil de 
-empresa. Hay que tener en cuenta que existe en el repositorio de `validations`, 
-un validator llamado `validatePhoneNumber` que se puede usar en el `front-end` de 
-manera tal de reutilizar este validador que usa el modelo `CompanyPhoneNumber`.
+empresa. Tener en cuenta que en el repositorio `validations` ya hay un 
+validator: `validatePhoneNumber`. Se debe colocar en el formulario en 
+el frontend de manera de reutilizarlo como se hace en el 
+modelo back-end (`Model.ts`)
 
 Finalmente habría que agregar un argumento `phoneNumbers` a la mutation 
 `updateCurrentCompany` que sea un array de strings. Y dentro del resolver de la 
