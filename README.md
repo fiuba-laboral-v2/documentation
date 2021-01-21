@@ -15,4 +15,4 @@ Trabajo Práctico Profesional, FIUBA, 2020
 
 * [Carreras](careers.md)
 
-* [# Email de la secretaria de los administradores](secretaryEmail.md)
+* [Email de la secretaria de los administradores](secretaryEmail.md)
