@@ -18,3 +18,5 @@ Trabajo Práctico Profesional, FIUBA, 2020
 * [Email de la secretaria de los administradores](secretaryEmail.md)
 
 * [Números de teléfono de empresa](companyPhoneNumbers.md)
+
+* [Traducciones](translations.md)
