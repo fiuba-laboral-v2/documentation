@@ -3,10 +3,10 @@
 Existe un modelo que se llama `CompanyPhoneNumber` el cual representa un número 
 de teléfono de una empresa. Estos se persisten en la tabla `CompanyPhoneNumbers`.
 
-Actualmente este modelo no se usa pero es útil saber que existen en caso de querer
-que una empresa pueda agregar a su perfil diferentes números de contacto.
+Este modelo quedo incompleto y no se está usando actualmente en la aplicación. 
+Si más adelante deciden agregarlo se podría realizar de la siguiente manera:
 
-Para agregarlos se tendría que agregar al formulario de edición del perfil de 
+Se tendría que agregar al formulario de edición del perfil de 
 empresa. Tener en cuenta que en el repositorio `validations` ya hay un 
 validator: `validatePhoneNumber`. Se debe colocar en el formulario en 
 el frontend de manera de reutilizarlo como se hace en el 
