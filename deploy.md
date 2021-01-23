@@ -40,11 +40,11 @@ Pasos a seguir:
    ```
     NODE_ENV=production
     DATABASE_URL=postgresql://user:password@netlocation:port/dbname
-    JWT_SECRET=[cualquier string: se utiliza para encriptar las contraseñas]
+    JWT_SECRET=cualquier string: se utiliza para encriptar las contraseñas
     EMAIL_API_APPLICATION_ID=lo que se pone en <aplic_id xsi:type="xsd:string">
     EMAIL_API_PASSWORD=lo que se pone en <password xsi:type="xsd:string">
-    EMAIL_API_URL=https://services.fi.uba.ar/misc.php
-    FIUBA_USERS_API_URL=https://services.fi.uba.ar/usuarios.php
+    EMAIL_API_URL=<url del servicio de SOAP de Fiuba>/misc.php
+    FIUBA_USERS_API_URL=<url del servicio de SOAP de Fiuba>/usuarios.php
    ```
 8. Ejecutar el deploy del `front-end` y el `back-end` con los 
 comandos (`NODE_ENV=production yarn deploy:frontend` y 
