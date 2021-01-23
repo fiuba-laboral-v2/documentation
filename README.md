@@ -20,3 +20,5 @@ Trabajo Práctico Profesional, FIUBA, 2020
 * [Números de teléfono de empresa](companyPhoneNumbers.md)
 
 * [Traducciones](translations.md)
+
+* [Comandos de yarn/npm de los repositorios](yarnCommands.md)
