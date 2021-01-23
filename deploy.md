@@ -7,12 +7,11 @@ En el servidor se asume que están instalados:
 * Apache ([instrucciones de instalación](https://ubuntu.com/tutorials/install-and-configure-apache#2-installing-apache))
 * Docker ([instrucciones de instalación](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository))
 * Docker Compose ([instrucciones de instalación](https://docs.docker.com/compose/install/#install-compose))
+* Un server de ssh: `sudo apt install openssh-server openssh-client`
 
 La aplicación a deployar es un html estático compilado de una aplicación React (`front-end`) y un servidor (`back-end`) que persiste en una base de datos PostgreSQL.
 
-Se exponen ambos via Apache, en las direcciones "/laboral" y "/graphql" respectivamente.
-
-Para utilizar otras direcciones (como "/") es necesario modificar la configuración de apache en `scripts/set_default_settings.sh` antes de ejecutar los scripts de deploy.
+Se exponen ambos via Apache, en dos direcciones diferentes (por default, "/" y "/graphql" respectivamente).
 
 ## Repositorio de deploy
 
@@ -30,12 +29,28 @@ Pasos a seguir:
 
 1. Forkear los repositorios a otro usuario u organización de GitHub
 2. Nombrar "production" al branch principal de `front-end` y `back-end`
-3. Actualizar las variables de configuración en la sección "production" de los siguientes archivos del repo `deploy`:
+3. Actualizar las variables de configuración (explicadas más abajo) en la sección "production" de los siguientes archivos del repo `deploy`:
    * `src/config/deploy.ts`
    * `src/config/Repository/Frontend.ts`
    * `src/config/Repository/Backend.ts`
-4. Sobre la carpeta raíz del repo `deploy`, ejecutar el comando `NODE_ENV=production yarn deploy:setup`
-5. Tras pushear cambios al branch "production" de los repos `front-end` o `back-end`, ejecutar el comando de deploy correspondiente (`NODE_ENV=production yarn deploy:frontend` y `NODE_ENV=production yarn deploy:backend`, respectivamente)
+4. Pararse sobre la carpeta raíz del repo deploy
+5. Instalar las dependencias del repo de deploy: `yarn install`
+6. Ejecutar el comando `NODE_ENV=production yarn deploy:setup`
+7. Modificar en el server el archivo `~/fiuba-laboral-v2/back-end/.env`, agregar variables tal que quede:
+   ```
+    NODE_ENV=production
+    DATABASE_URL=postgresql://user:password@netlocation:port/dbname
+    JWT_SECRET=cualquier string: Se utiliza para encriptar los datos del usuario de autorización para generar la cookie (https://jwt.io/) 
+    EMAIL_API_APPLICATION_ID=lo que se pone en <aplic_id xsi:type="xsd:string">
+    EMAIL_API_PASSWORD=lo que se pone en <password xsi:type="xsd:string">
+    EMAIL_API_URL=<url del servicio de SOAP de Fiuba>/misc.php
+    FIUBA_USERS_API_URL=<url del servicio de SOAP de Fiuba>/usuarios.php
+   ```
+8. Ejecutar el deploy del `front-end` y el `back-end` con los 
+comandos (`NODE_ENV=production yarn deploy:frontend` y 
+`NODE_ENV=production yarn deploy:backend`, respectivamente). 
+Repetir este paso cada vez que se quieran subir los últimos cambios del 
+repositorio correspondiente.
 
 Tener en cuenta que el deploy fue preparado para un ambiente de staging que no usa https. Pueden ser necesarias modificaciones para contemplar ese caso.
 
@@ -45,6 +60,7 @@ Después de cualquier modificación en el repo de deploy hay que correr nuevamen
 
 * `src/config/deploy.ts`
    * `hostname`: desde el que se accede públicamente a lo que sirve apache (ejemplo: "bolsadetrabajo.fi.uba.ar")
+   * `frontendPath`: path en la url donde se accede a la aplicación (con "/" al principio y no al final, por ejemplo "/" o "/frontend")
    * `sshAddress`: para conexión ssh (ejemplo: "dylan@bolsadetrabajo.fi.uba.ar")
    * `user`: usuario de la sesión en el server (ejemplo: "dylan")
 * `src/config/Repository/Frontend.ts`
@@ -70,9 +86,7 @@ En `scripts/deploy_frontend.ts` se clona la última versión del repositorio, se
 
 En `scripts/deploy_backend.ts` se clona o actualiza el repositorio en la carpeta especificada, se construye y se ejecuta el contenedor de docker via docker-compose, y se corren las migraciones sobre la base de datos. Finalmente, se corre `docker image prune --force` para eliminar las imágenes sin usar en docker.
 
-Se utiliza un contenedor de PostgreSQL en docker, y los datos de la aplicación se almacenan en un volumen de docker. 
-
-En el repositorio `back-end`, el archivo `docker-compose.yml` muestra la configuración para construir y ejecutar los contenedores de la base de datos y del servidor. Ambos tienen seteado `restart: always`, es decir que al fallar o tras un corte de luz van a volver a levantarse solos.
+En el repositorio `back-end`, el archivo `docker-compose.yml` muestra la configuración para construir y ejecutar los contenedores (el servidor del backend, y adicionalmente, en desarrollo o staging, una base de datos postgres dockerizada). Tienen seteado `restart: always`, es decir que al fallar o tras un corte de luz van a volver a levantarse solos.
 
 En `Dockerfile` se especifica que el contenedor del server corre `yarn pm2:start`. En `package.json`, sección de `scripts` se ve que este comando ejecuta la aplicación node via pm2, que básicamente se encarga de instanciar múltiples procesos y manejar su creación y destrucción según reglas definidas en `config/process.yml`, y documentadas [en el sitio de pm2](https://pm2.keymetrics.io/docs/usage/application-declaration/#advanced-features).
 
