@@ -46,7 +46,11 @@ Pasos a seguir:
     EMAIL_API_URL=https://services.fi.uba.ar/misc.php
     FIUBA_USERS_API_URL=https://services.fi.uba.ar/usuarios.php
    ```
-8. Tras pushear cambios al branch "production" de los repos `front-end` o `back-end`, ejecutar el comando de deploy correspondiente (`NODE_ENV=production yarn deploy:frontend` y `NODE_ENV=production yarn deploy:backend`, respectivamente)
+8. Ejecutar el deploy del `front-end` y el `back-end` con los 
+comandos (`NODE_ENV=production yarn deploy:frontend` y 
+`NODE_ENV=production yarn deploy:backend`, respectivamente). 
+Repetir este paso cada vez que se quieran subir los últimos cambios del 
+repositorio correspondiente.
 
 Tener en cuenta que el deploy fue preparado para un ambiente de staging que no usa https. Pueden ser necesarias modificaciones para contemplar ese caso.
 
