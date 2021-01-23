@@ -33,9 +33,10 @@ Pasos a seguir:
    * `src/config/deploy.ts`
    * `src/config/Repository/Frontend.ts`
    * `src/config/Repository/Backend.ts`
-4. Instalar las dependencias del repo de deploy: `yarn install`
-5. Sobre la carpeta raíz del repo `deploy`, ejecutar el comando `NODE_ENV=production yarn deploy:setup`
-6. Modificar en el server el archivo `~/fiuba-laboral-v2/back-end/.env`, agregar variables tal que quede:
+4. Pararse sobre la carpeta raíz del repo deploy
+5. Instalar las dependencias del repo de deploy: `yarn install`
+6. Ejecutar el comando `NODE_ENV=production yarn deploy:setup`
+7. Modificar en el server el archivo `~/fiuba-laboral-v2/back-end/.env`, agregar variables tal que quede:
    ```
     NODE_ENV=production
     DATABASE_URL=[postgresql://user:password@netlocation:port/dbname]
@@ -45,7 +46,7 @@ Pasos a seguir:
     EMAIL_API_URL=https://services.fi.uba.ar/misc.php
     FIUBA_USERS_API_URL=https://services.fi.uba.ar/usuarios.php
    ```
-7. Tras pushear cambios al branch "production" de los repos `front-end` o `back-end`, ejecutar el comando de deploy correspondiente (`NODE_ENV=production yarn deploy:frontend` y `NODE_ENV=production yarn deploy:backend`, respectivamente)
+8. Tras pushear cambios al branch "production" de los repos `front-end` o `back-end`, ejecutar el comando de deploy correspondiente (`NODE_ENV=production yarn deploy:frontend` y `NODE_ENV=production yarn deploy:backend`, respectivamente)
 
 Tener en cuenta que el deploy fue preparado para un ambiente de staging que no usa https. Pueden ser necesarias modificaciones para contemplar ese caso.
 
