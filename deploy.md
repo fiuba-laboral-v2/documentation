@@ -40,7 +40,7 @@ Pasos a seguir:
    ```
     NODE_ENV=production
     DATABASE_URL=postgresql://user:password@netlocation:port/dbname
-    JWT_SECRET=cualquier string: se utiliza para encriptar las contraseñas
+    JWT_SECRET=cualquier string: Se utiliza para encriptar los datos del usuario de autorización para generar la cookie (https://jwt.io/) 
     EMAIL_API_APPLICATION_ID=lo que se pone en <aplic_id xsi:type="xsd:string">
     EMAIL_API_PASSWORD=lo que se pone en <password xsi:type="xsd:string">
     EMAIL_API_URL=<url del servicio de SOAP de Fiuba>/misc.php
