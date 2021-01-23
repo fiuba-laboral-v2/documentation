@@ -7,3 +7,5 @@
 * [Comandos del repositorio de validations](https://github.com/fiuba-laboral-v2/validations/blob/master/README.md)
 
 * [Comandos del repositorio de deploy](https://github.com/fiuba-laboral-v2/deploy/blob/master/README.md)
+
+* [Comandos del repositorio de tslint-config](https://github.com/fiuba-laboral-v2/tslint-config/blob/master/README.md)
