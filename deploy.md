@@ -86,7 +86,7 @@ En `scripts/deploy_frontend.ts` se clona la última versión del repositorio, se
 
 En `scripts/deploy_backend.ts` se clona o actualiza el repositorio en la carpeta especificada, se construye y se ejecuta el contenedor de docker via docker-compose, y se corren las migraciones sobre la base de datos. Finalmente, se corre `docker image prune --force` para eliminar las imágenes sin usar en docker.
 
-En el repositorio `back-end`, el archivo `docker-compose.yml` muestra la configuración para construir y ejecutar los contenedores. Tienen seteado `restart: always`, es decir que al fallar o tras un corte de luz van a volver a levantarse solos.
+En el repositorio `back-end`, el archivo `docker-compose.yml` muestra la configuración para construir y ejecutar los contenedores (el servidor del backend, y adicionalmente, en desarrollo o staging, una base de datos postgres dockerizada). Tienen seteado `restart: always`, es decir que al fallar o tras un corte de luz van a volver a levantarse solos.
 
 En `Dockerfile` se especifica que el contenedor del server corre `yarn pm2:start`. En `package.json`, sección de `scripts` se ve que este comando ejecuta la aplicación node via pm2, que básicamente se encarga de instanciar múltiples procesos y manejar su creación y destrucción según reglas definidas en `config/process.yml`, y documentadas [en el sitio de pm2](https://pm2.keymetrics.io/docs/usage/application-declaration/#advanced-features).
 
