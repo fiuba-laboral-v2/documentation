@@ -39,10 +39,10 @@ Pasos a seguir:
 7. Modificar en el server el archivo `~/fiuba-laboral-v2/back-end/.env`, agregar variables tal que quede:
    ```
     NODE_ENV=production
-    DATABASE_URL=[postgresql://user:password@netlocation:port/dbname]
+    DATABASE_URL=postgresql://user:password@netlocation:port/dbname
     JWT_SECRET=[cualquier string: se utiliza para encriptar las contraseñas]
-    EMAIL_API_APPLICATION_ID=[lo que se pone en <aplic_id xsi:type="xsd:string">]
-    EMAIL_API_PASSWORD=[lo que se pone en <password xsi:type="xsd:string">]
+    EMAIL_API_APPLICATION_ID=lo que se pone en <aplic_id xsi:type="xsd:string">
+    EMAIL_API_PASSWORD=lo que se pone en <password xsi:type="xsd:string">
     EMAIL_API_URL=https://services.fi.uba.ar/misc.php
     FIUBA_USERS_API_URL=https://services.fi.uba.ar/usuarios.php
    ```
