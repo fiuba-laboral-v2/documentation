@@ -18,3 +18,16 @@ traducciones a retornar como se ve a continuación:
 ```Typescript
 const translations = useTranslations<{ title: sting }>("applicantList");
 ```
+
+## Nombre de las secretarías
+
+En caso de que una secretaría mute de nombre hay que modificar el nombre 
+correspondiente en el `translationGroup` de `institutions` en el archivo
+`src/models/Translation/defaultTranslations.ts.` que tiene este formato:
+
+```
+institutions: {
+    extension: string;
+    graduados: string;
+}
+```
