@@ -22,3 +22,5 @@ Trabajo Práctico Profesional, FIUBA, 2020
 * [Traducciones](translations.md)
 
 * [Comandos de yarn/npm de los repositorios](yarnCommands.md)
+
+* [Publicar una nueva versión de una librería de npm](publishNpmLibrary.md)
