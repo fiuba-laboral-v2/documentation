@@ -90,4 +90,4 @@ En el repositorio `back-end`, el archivo `docker-compose.yml` muestra la configu
 
 En `Dockerfile` se especifica que el contenedor del server corre `yarn pm2:start`. En `package.json`, sección de `scripts` se ve que este comando ejecuta la aplicación node via pm2, que básicamente se encarga de instanciar múltiples procesos y manejar su creación y destrucción según reglas definidas en `config/process.yml`, y documentadas [en el sitio de pm2](https://pm2.keymetrics.io/docs/usage/application-declaration/#advanced-features).
 
-Hoy se levanta en modo cluster ([documentación](https://pm2.keymetrics.io/docs/usage/cluster-mode/)), con `instances: max` (una por núcleo del procesador), y `max_memory_restart: 250M`. Modificar según sea necesario.
+Hoy se levanta en modo cluster ([documentación](https://pm2.keymetrics.io/docs/usage/cluster-mode/)), con `instances: max` (una por núcleo del procesador), y `max_memory_restart: 2000M`. Modificar según sea necesario.
