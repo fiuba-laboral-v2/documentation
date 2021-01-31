@@ -1,14 +1,14 @@
 # Convenciones del Front End
 
-* Todas las páginas deben estar bajo la carpeta `src/pages`.
+* La aplicación está dividida en páginas, cada una con su ruta. Las rutas 
+se declaran en `RoutesBuilder` y cada una corresponde a un componente 
+"page", en la carpeta `src/pages`.
 
-* Todas las páginas deben estar a su vez dentro de las carpetas, `Applicant`, 
-`Company` o `Admin`.
+* Las páginas son o para postulante, para company, para admin, o públicas. 
+Esa división corresponde a las carpetas `Applicant`, `Company` o `Admin`.
 
 * Las carpetas `Applicant`, `Company` o `Admin` van a tener su conjunto de 
 sub-rutas para acceder a sus respectivas páginas.
-
-* Todas las rutas deben ser incluidas en `RoutesBuilder`.
 
 * Los componentes que son comunes a varias páginas deben ser guardados en la 
 carpeta `src/components`.
