@@ -1,3 +1,5 @@
+# Convenciones generales
+
 * Las carpetas y archivos que refieren a entidades (en singular) como `Database`, `Environment`, `Admin`, `Logger` van en mayúscula.
 
 * Las carpetas y archivos que actúan como contenedores (en general, en plural) 
@@ -26,5 +28,4 @@ archivos `Model.ts`, `Repository.ts`, `Interface.ts`, etc.
 
 * Todas las Queries y Mutations de Graphql deben ser guardadas en constantes en mayúsculas al momento de ser usadas.
 
-# Front End
-[Front End](Frontend.md)
+## Convenciones del [Front End](Frontend.md)

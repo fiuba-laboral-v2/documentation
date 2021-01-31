@@ -1,4 +1,4 @@
-Exclusivo **Front-End**:
+# Convenciones del Front End
 
 * Todas las páginas deben estar bajo la carpeta `src/pages`.
 
