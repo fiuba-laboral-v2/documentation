@@ -5,7 +5,7 @@ se declaran en `RoutesBuilder` y cada una corresponde a un componente
 "page", en la carpeta `src/pages`.
 
 * Las páginas son o para postulante, para company, para admin, o públicas. 
-Esa división corresponde a las carpetas `Applicant`, `Company` o `Admin`.
+Esa división corresponde a las carpetas `Applicant`, `Company`,  `Admin` o `Public`.
 
 * Las carpetas `Applicant`, `Company` o `Admin` van a tener su conjunto de 
 sub-rutas para acceder a sus respectivas páginas.
