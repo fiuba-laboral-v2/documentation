@@ -4,10 +4,22 @@ En el `back-end` existe un servicio de email (`EmailService`) que utiliza la
 API `Soap` que provee la Facultad. Este servicio tiene una política de reintentos
 en caso de que el envío falle.
 
-Existe un archivo de configuración `EmailServiceConfig` el cual tiene definido 
-una serie de números que representa el intervalo en segundos para volver a 
-realizar un intento cada vez que el envío del email falle hasta que el intervalo 
-se termine. 
+En el archivo de configuración `EmailServiceConfig` se define un array de 
+números que representa cuánto tiempo se espera en segundos antes del siguiente 
+re-intento.
+
+Por ejemplo, dado el valor [1, 2, 3]:
+
+* Se envía el mail y falla: se espera 1 segundo
+* Se envía el mail y falla: se espera 2 segundos
+* Se envía el mail y falla: se espera 3 segundos
+* Se envía el mail y falla: no se vuelve a re-intentar
+
+O por ejemplo:
+
+* Se envía el mail y falla: se espera 1 segundo
+* Se envía el mail y falla: se espera 2 segundos
+* Se envía el mail correctamente
 
 Se loguea el resultado de todos los requests de envío de email a la 
 tabla `NotificationEmailLogs`.
