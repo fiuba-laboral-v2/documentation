@@ -1,4 +1,4 @@
-# Eliminación periódica
+# Eliminación periódica de registros
 
 Actualmente las tablas `CompanyNotifications`, `ApplicantNotifications`, 
 `AdminNotifications` y `NotificationEmailLogs` tienen una política de 
