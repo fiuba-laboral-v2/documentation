@@ -9,10 +9,8 @@ una serie de números que representa el intervalo en segundos para volver a
 realizar un intento cada vez que el envío del email falle hasta que el intervalo 
 se termine. 
 
-En caso de que en algún re-intento se envíe el email exitosamente, se loguea 
-un registro de éxito en la tabla `NotificationEmailLogs`.
-En caso de que se venza dicho intervalo, se loguea un registro de error en la 
-tabla `NotificationEmailLogs`:
+Se loguea el resultado de todos los requests de envío de email a la 
+tabla `NotificationEmailLogs`.
 
 La tabla `NotificationEmailLogs` contiene:
 
