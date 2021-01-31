@@ -6,9 +6,8 @@ se declaran en `RoutesBuilder` y cada una corresponde a un componente
 
 * Las páginas son o para postulante, para company, para admin, o públicas. 
 Esa división corresponde a las carpetas `Applicant`, `Company`,  `Admin` o `Public`.
-
-* Las carpetas `Applicant`, `Company` o `Admin` van a tener su conjunto de 
-sub-rutas para acceder a sus respectivas páginas.
+En cada una de estas carpetas se declaran las sub-rutas correspondientes en el 
+archivo `routes.tsx`.
 
 * Los componentes que son comunes a varias páginas deben ser guardados en la 
 carpeta `src/components`.
