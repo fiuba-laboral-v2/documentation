@@ -24,7 +24,7 @@ archivos `Model.ts`, `Repository.ts`, `Interface.ts`, etc.
 
 * Los tipos de `GraphQL` se nombran como: **GraphQL&lt;TypeName&gt;**. Ejemplo: `GraphQLCompany`
 
-* El ancho mínimo de viewport que soportamos es de 210px inclusive
+* El ancho mínimo de viewport que soportamos es de 290px inclusive
 
 * Todas las Queries y Mutations de Graphql deben ser guardadas en constantes en mayúsculas al momento de ser usadas.
 
