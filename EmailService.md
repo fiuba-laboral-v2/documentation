@@ -21,3 +21,5 @@ La tabla `NotificationEmailLogs` contiene:
 * `success`: Booleano que indica si el mail se envió exitosamente
 * `message`: Mensaje sobre la operación. En caso de error especifica el error que el servicio devuelve. En caso contrario muestra un mensaje de éxito
 * `createdAt`: Fecha de creación del registro
+
+###### [Eliminación periódica de registros](PeriodicRemoval.md)
