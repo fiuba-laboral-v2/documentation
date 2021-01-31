@@ -6,7 +6,7 @@
 `Company` o `Admin`.
 
 * Las carpetas `Applicant`, `Company` o `Admin` van a tener su conjunto de 
-su-brutas para acceder a sus respectivas páginas.
+sub-rutas para acceder a sus respectivas páginas.
 
 * Todas las rutas deben ser incluidas en `RoutesBuilder`.
 
