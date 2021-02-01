@@ -1,8 +1,6 @@
 # Documentation
 Trabajo Práctico Profesional, FIUBA, 2020
 
-* [Convenciones](conventions/conventions.md)
-
 * [Setup backend](setup/backend.md)
 
 * [Deploy](deploy.md)
@@ -26,3 +24,5 @@ Trabajo Práctico Profesional, FIUBA, 2020
 * [Publicar una nueva versión de una librería de npm](publishNpmLibrary.md)
 
 * [Servicio de Email](EmailService.md)
+
+* [Convenciones](conventions/conventions.md)
